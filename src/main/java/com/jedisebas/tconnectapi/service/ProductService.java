@@ -10,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -38,7 +37,7 @@ public class ProductService {
         try {
             validator.validateProductDtoFields(dto);
 
-            Product product = repository.findById(dto.getCode())
+            Product product = repository.findByCode(dto.getCode().toString(), dto.getName(), dto.getNW().toString(), dto.getWN())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "product not found"));
 
             product.setCode(dto.getCode());

@@ -2,10 +2,7 @@ package com.jedisebas.tconnectapi.entity;
 
 import com.jedisebas.tconnectapi.constants.ProductConst;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +18,10 @@ import java.time.LocalDateTime;
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = ProductConst.ID)
+    private Integer id;
+
     @Column(name = ProductConst.CODE)
     private Long code;
 

@@ -4,6 +4,8 @@ import com.jedisebas.tconnectapi.constants.ProductConst;
 import com.jedisebas.tconnectapi.dto.ProductDto;
 import org.springframework.stereotype.Service;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.regex.Pattern;
 
 @Service
@@ -67,6 +69,11 @@ public class ValidatorService {
     }
 
     void checkDateTimeFormat(CharSequence dateTime) {
+        try {
+            LocalDateTime.parse(dateTime);
+        } catch (DateTimeException e) {
+            throw  new IllegalArgumentException();
+        }
         String regex = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}";
         Pattern pattern = Pattern.compile(regex);
 

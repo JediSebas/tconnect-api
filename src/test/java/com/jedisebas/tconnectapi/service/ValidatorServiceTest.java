@@ -54,12 +54,12 @@ class ValidatorServiceTest {
 
     @Test
     void givenNotExistingDayOrSomething_whenCheckDateTimeFormat() {
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-32T12:00:00"));
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T25:00:00"));
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T23:61:00"));
-        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T23:59:61"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-32T12:00:00"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T25:00:00"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T23:61:00"));
+        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T23:59:61"));
     }
 
     @Test

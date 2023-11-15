@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductConst {
     public static final String TABLE = "produkty";
+    public static final String ID = "id";
     public static final String CODE = "Kod";
     public static final String NAME = "Nazwa";
     public static final String NW = "N_W";
