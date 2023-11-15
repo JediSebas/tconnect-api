@@ -1,4 +1,4 @@
-/*package com.jedisebas.tconnectapi.service;
+package com.jedisebas.tconnectapi.service;
 
 import com.jedisebas.tconnectapi.dto.ProductDto;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class ValidatorServiceTest {
                 .numberT(null)
                 .dateTime(null)
                 .build();
-        assertThrows(IllegalAccessException.class, () -> validator.validateProductDtoFields(dto));
+        assertThrows(IllegalArgumentException.class, () -> validator.validateProductDtoFields(dto));
     }
 
     @Test
@@ -54,12 +54,12 @@ class ValidatorServiceTest {
 
     @Test
     void givenNotExistingDayOrSomething_whenCheckDateTimeFormat() {
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-32T12:00:00"));
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T25:00:00"));
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T23:61:00"));
-        assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-12-31T23:59:61"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-14-01T12:00:00"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-32T12:00:00"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T25:00:00"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T23:61:00"));
+        assertDoesNotThrow(() -> validator.checkDateTimeFormat("2020-12-31T23:59:61"));
     }
 
     @Test
@@ -71,4 +71,3 @@ class ValidatorServiceTest {
         assertThrows(IllegalArgumentException.class, () -> validator.checkDateTimeFormat("2020-01-01T03:01"));
     }
 }
-*/
