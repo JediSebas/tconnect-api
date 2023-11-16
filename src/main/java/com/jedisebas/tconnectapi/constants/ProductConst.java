@@ -17,6 +17,6 @@ public class ProductConst {
     public static final int CODE_LENGTH = 13;
     public static final int NAME_LENGTH = 50;
     public static final int NW_LENGTH = 5;
-    public static final int WN_LENGTH = 2;
+    public static final int WN_LENGTH = 3;
     public static final int NUMBER_T_LENGTH = 11;
 }
