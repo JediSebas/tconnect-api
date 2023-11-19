@@ -1,4 +1,4 @@
-package com.jedisebas.tconnectapi.service;
+package com.jedisebas.tconnectapi;
 
 import java.time.LocalDateTime;
 

@@ -1,5 +1,6 @@
 package com.jedisebas.tconnectapi.service;
 
+import com.jedisebas.tconnectapi.TestConstants;
 import com.jedisebas.tconnectapi.dto.ProductDto;
 import org.junit.jupiter.api.Test;
 

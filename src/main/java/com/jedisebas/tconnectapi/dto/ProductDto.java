@@ -3,10 +3,7 @@ package com.jedisebas.tconnectapi.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jedisebas.tconnectapi.constants.ProductConst;
 import jakarta.annotation.Nullable;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @ToString
+@EqualsAndHashCode
 public class ProductDto {
 
     @JsonProperty(ProductConst.CODE)
