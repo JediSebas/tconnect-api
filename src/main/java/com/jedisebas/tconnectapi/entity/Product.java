@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = ProductConst.TABLE)
@@ -41,4 +42,19 @@ public class Product {
     @Nullable
     @Column(name = ProductConst.DATETIME)
     private LocalDateTime dateTime;
+
+    @Override
+    public final boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null) return false;
+        if (!(object instanceof Product product)) return false;
+
+        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(nW, product.nW) &&
+                Objects.equals(wN, product.wN) && Objects.equals(numberT, product.numberT) && Objects.equals(dateTime, product.dateTime);
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(id, code, name, nW, wN, numberT, dateTime);
+    }
 }
