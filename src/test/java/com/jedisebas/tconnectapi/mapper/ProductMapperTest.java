@@ -23,7 +23,7 @@ class ProductMapperTest {
                 .dateTime(TestConstants.DATE_TIME)
                 .build();
 
-        ProductDto dto1 = ProductDto.builder()
+        final ProductDto dto1 = ProductDto.builder()
                 .code(TestConstants.CODE)
                 .name(TestConstants.NAME)
                 .nW(TestConstants.N_W)
