@@ -11,6 +11,5 @@ public class TestConstants {
     public static final Integer NUMBER_T = 5;
     public static final LocalDateTime DATE_TIME = LocalDateTime.parse("2023-11-14T14:05:21");
 
-    public static final Long TOO_LONG_CODE = 59000592548270L;
     public static final String TOO_LONG_W_N = "W300";
 }
