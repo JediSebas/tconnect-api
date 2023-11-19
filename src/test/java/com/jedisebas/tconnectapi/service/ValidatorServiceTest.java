@@ -3,8 +3,6 @@ package com.jedisebas.tconnectapi.service;
 import com.jedisebas.tconnectapi.dto.ProductDto;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -15,19 +13,19 @@ class ValidatorServiceTest {
     @Test
     void givenValidProductDto() {
         ProductDto dto = ProductDto.builder()
-                .code(5900059254827L)
-                .name("Produkt3")
-                .nW(99233)
-                .wN("W3")
-                .numberT(5)
-                .dateTime(LocalDateTime.parse("2023-11-14T14:05:21"))
+                .code(TestConstants.CODE)
+                .name(TestConstants.NAME)
+                .nW(TestConstants.N_W)
+                .wN(TestConstants.W_N)
+                .numberT(TestConstants.NUMBER_T)
+                .dateTime(TestConstants.DATE_TIME)
                 .build();
         assertDoesNotThrow(() -> validator.validateProductDtoFields(dto));
     }
 
     @Test
     void givenNotValidProductDto() {
-        ProductDto dto = ProductDto.builder()
+        ProductDto dto1 = ProductDto.builder()
                 .code(null)
                 .name(null)
                 .nW(null)
@@ -35,7 +33,28 @@ class ValidatorServiceTest {
                 .numberT(null)
                 .dateTime(null)
                 .build();
-        assertThrows(IllegalArgumentException.class, () -> validator.validateProductDtoFields(dto));
+
+        ProductDto dto2 = ProductDto.builder()
+                .code(TestConstants.CODE)
+                .name("")
+                .nW(TestConstants.N_W)
+                .wN("")
+                .numberT(TestConstants.NUMBER_T)
+                .dateTime(TestConstants.DATE_TIME)
+                .build();
+
+        ProductDto dto3 = ProductDto.builder()
+                .code(TestConstants.CODE)
+                .name(TestConstants.NAME)
+                .nW(TestConstants.N_W)
+                .wN(TestConstants.TOO_LONG_W_N)
+                .numberT(TestConstants.NUMBER_T)
+                .dateTime(TestConstants.DATE_TIME)
+                .build();
+
+        assertThrows(IllegalArgumentException.class, () -> validator.validateProductDtoFields(dto1));
+        assertThrows(IllegalArgumentException.class, () -> validator.validateProductDtoFields(dto2));
+        assertThrows(IllegalArgumentException.class, () -> validator.validateProductDtoFields(dto3));
     }
 
     @Test
