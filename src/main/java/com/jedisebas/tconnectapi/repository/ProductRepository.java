@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.code LIKE ?1 AND p.name LIKE ?2 AND p.nW LIKE ?3 AND p.wN LIKE ?4")
     Optional<Product> findByCode(String code, String name, String nW, String wN);
 
-    @Query("SELECT p FROM Product p WHERE p.code LIKE ?1")
+    @Query("SELECT p FROM Product p WHERE p.code LIKE ?1 AND p.numberT IS NULL AND p.dateTime IS NULL")
     List<Product> findAllByCode(String code);
 
     @Transactional
