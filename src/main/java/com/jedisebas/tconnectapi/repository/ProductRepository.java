@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT p FROM Product p WHERE p.code LIKE ?1 AND p.numberT IS NULL AND p.dateTime IS NULL")
     List<Product> findAllByCode(String code);
+
+    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2")
+    List<Product> findAllByNumberTAndDate(String numberT, LocalDate date);
+
+    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2 AND p.wN LIKE ?3")
+    List<Product> findAllByNumberTAndDateAndWN(String numberT, LocalDate date, String wN);
 
     @Transactional
     @Modifying(flushAutomatically = true, clearAutomatically = true)

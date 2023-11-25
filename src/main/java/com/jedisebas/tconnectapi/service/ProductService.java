@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,20 @@ public class ProductService {
     public List<ProductDto> fetchByCode(Long code) {
         List<ProductDto> toReturn = new ArrayList<>();
         repository.findAllByCode(code.toString()).forEach(product -> toReturn.add(mapper.entityToDto(product)));
+
+        return toReturn;
+    }
+
+    public List<ProductDto> fetchByNumberTAndDate(Integer numberT, LocalDate date) {
+        List<ProductDto> toReturn = new ArrayList<>();
+        repository.findAllByNumberTAndDate(numberT.toString(), date).forEach(product -> toReturn.add(mapper.entityToDto(product)));
+
+        return toReturn;
+    }
+
+    public List<ProductDto> fetchByNumberTAndDateAndWN(Integer numberT, LocalDate date, String nW) {
+        List<ProductDto> toReturn = new ArrayList<>();
+        repository.findAllByNumberTAndDateAndWN(numberT.toString(), date, nW).forEach(product -> toReturn.add(mapper.entityToDto(product)));
 
         return toReturn;
     }

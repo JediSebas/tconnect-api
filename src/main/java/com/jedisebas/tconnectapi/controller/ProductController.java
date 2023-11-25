@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,16 @@ public class ProductController {
     @GetMapping("/{code}")
     public List<ProductDto> getByCode(@PathVariable Long code) {
         return service.fetchByCode(code);
+    }
+
+    @GetMapping("/{numberT}/{date}")
+    public List<ProductDto> getByNumberTAndDate(@PathVariable Integer numberT, @PathVariable LocalDate date) {
+        return service.fetchByNumberTAndDate(numberT, date);
+    }
+
+    @GetMapping("/{numberT}/{date}/{wN}")
+    public List<ProductDto> getByNumberTAndDateAndWN(@PathVariable Integer numberT, @PathVariable LocalDate date, @PathVariable String wN) {
+        return service.fetchByNumberTAndDateAndWN(numberT, date, wN);
     }
 
     @PutMapping
