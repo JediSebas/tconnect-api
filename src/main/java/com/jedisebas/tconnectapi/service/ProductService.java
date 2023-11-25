@@ -4,7 +4,7 @@ import com.jedisebas.tconnectapi.dto.ProductDto;
 import com.jedisebas.tconnectapi.entity.Product;
 import com.jedisebas.tconnectapi.mapper.ProductMapper;
 import com.jedisebas.tconnectapi.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
-    @Autowired private ProductRepository repository;
-    @Autowired private ProductMapper mapper;
-    @Autowired private ValidatorService validator;
+    private final ProductRepository repository;
+    private final ProductMapper mapper;
+    private final ValidatorService validator;
 
     public List<ProductDto> fetchAllProducts() {
         List<ProductDto> toReturn = new ArrayList<>();
