@@ -21,10 +21,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.code LIKE ?1 AND p.numberT IS NULL AND p.dateTime IS NULL")
     List<Product> findAllByCode(String code);
 
-    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2")
+    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2 ORDER BY p.dateTime DESC")
     List<Product> findAllByNumberTAndDate(String numberT, LocalDate date);
 
-    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2 AND p.wN LIKE ?3")
+    @Query("SELECT p FROM Product p WHERE p.numberT LIKE ?1 AND DATE(p.dateTime) = ?2 AND p.wN LIKE ?3 ORDER BY p.dateTime DESC")
     List<Product> findAllByNumberTAndDateAndWN(String numberT, LocalDate date, String wN);
 
     @Transactional
