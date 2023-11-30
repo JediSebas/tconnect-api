@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/v1/products",
+@RequestMapping(path = "/v2/products",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
@@ -24,19 +24,41 @@ public class ProductController {
         return service.fetchAllProducts();
     }
 
-    @GetMapping("/{code}")
-    public List<ProductDto> getByCode(@PathVariable Long code) {
-        return service.fetchByCode(code);
+    @GetMapping("/without-t")
+    public List<ProductDto> getAllWithNullNumberT() {
+        return service.fetchAllWithNullNumberT();
     }
 
-    @GetMapping("/{numberT}/{date}")
-    public List<ProductDto> getByNumberTAndDate(@PathVariable Integer numberT, @PathVariable LocalDate date) {
-        return service.fetchByNumberTAndDate(numberT, date);
+    @GetMapping("/with-t")
+    public List<ProductDto> getAllWithNumberT() {
+        return service.fetchAllWithNumberT();
     }
 
-    @GetMapping("/{numberT}/{date}/{wN}")
-    public List<ProductDto> getByNumberTAndDateAndWN(@PathVariable Integer numberT, @PathVariable LocalDate date, @PathVariable String wN) {
-        return service.fetchByNumberTAndDateAndWN(numberT, date, wN);
+    @GetMapping(value = "/main", params = "code")
+    public List<ProductDto> getAllByCode(@RequestParam Long code) {
+        return service.fetchAllByCodeWithNullNumberT(code);
+    }
+
+    @GetMapping(value = "/main", params = {"part", "wn"})
+    public List<ProductDto> getAllByCodePartAndWn(@RequestParam(required = false) Long part, @RequestParam(required = false) String wn) {
+        return service.fetchAllByCodePartAndWn(part, wn);
+    }
+
+    @GetMapping(value = "/extra", params = {"code", "number", "date", "wn"})
+    public List<ProductDto> getAllByParamsCode(@RequestParam(required = false) Long code, @RequestParam(required = false) Integer number,
+                                               @RequestParam(required = false) LocalDate date, @RequestParam(required = false) String wn) {
+        return service.fetchAllByParamsCode(code, number, date, wn);
+    }
+
+    @GetMapping(value = "/extra", params = {"part", "number", "date", "wn"})
+    public List<ProductDto> getAllByParamsCodePart(@RequestParam(required = false) Long part, @RequestParam(required = false) Integer number,
+                                                   @RequestParam(required = false) LocalDate date, @RequestParam(required = false) String wn) {
+        System.out.println("DUPAAA");
+        System.out.println(part);
+        System.out.println(number);
+        System.out.println(date);
+        System.out.println(wn);
+        return service.fetchAllByParamsCodePart(part, number, date, wn);
     }
 
     @PutMapping

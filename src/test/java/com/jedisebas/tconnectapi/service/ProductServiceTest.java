@@ -31,7 +31,7 @@ class ProductServiceTest {
 
     @Test
     void fetchProductByCodeEmpty() {
-        when(repository.findAllByCode(String.valueOf(TestConstants.CODE))).thenReturn(List.of());
-        assertEquals(List.of(), service.fetchByCode(TestConstants.CODE));
+        when(repository.findAllByCodeWithNullNumberT(TestConstants.CODE)).thenReturn(List.of());
+        assertEquals(List.of(), service.fetchAllByCodeWithNullNumberT(TestConstants.CODE));
     }
 }
