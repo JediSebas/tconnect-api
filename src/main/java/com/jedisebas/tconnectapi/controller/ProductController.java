@@ -39,26 +39,26 @@ public class ProductController {
         return service.fetchAllByCodeWithNullNumberT(code);
     }
 
-    @GetMapping(value = "/main", params = {"part", "wn"})
-    public List<ProductDto> getAllByCodePartAndWn(@RequestParam(required = false) Long part, @RequestParam(required = false) String wn) {
-        return service.fetchAllByCodePartAndWn(part, wn);
+    @GetMapping(value = "/main", params = {"part", "nw"})
+    public List<ProductDto> getAllByCodePartAndNw(@RequestParam(required = false) Long part, @RequestParam(required = false) Integer nw) {
+        return service.fetchAllByCodePartAndNw(part, nw);
     }
 
-    @GetMapping(value = "/extra", params = {"code", "number", "date", "wn"})
+    @GetMapping(value = "/extra", params = {"code", "number", "date", "nw"})
     public List<ProductDto> getAllByParamsCode(@RequestParam(required = false) Long code, @RequestParam(required = false) Integer number,
-                                               @RequestParam(required = false) LocalDate date, @RequestParam(required = false) String wn) {
-        return service.fetchAllByParamsCode(code, number, date, wn);
+                                               @RequestParam(required = false) LocalDate date, @RequestParam(required = false) Integer nw) {
+        return service.fetchAllByParamsCode(code, number, date, nw);
     }
 
-    @GetMapping(value = "/extra", params = {"part", "number", "date", "wn"})
+    @GetMapping(value = "/extra", params = {"part", "number", "date", "nw"})
     public List<ProductDto> getAllByParamsCodePart(@RequestParam(required = false) Long part, @RequestParam(required = false) Integer number,
-                                                   @RequestParam(required = false) LocalDate date, @RequestParam(required = false) String wn) {
+                                                   @RequestParam(required = false) LocalDate date, @RequestParam(required = false) Integer nw) {
         System.out.println("DUPAAA");
         System.out.println(part);
         System.out.println(number);
         System.out.println(date);
-        System.out.println(wn);
-        return service.fetchAllByParamsCodePart(part, number, date, wn);
+        System.out.println(nw);
+        return service.fetchAllByParamsCodePart(part, number, date, nw);
     }
 
     @PutMapping

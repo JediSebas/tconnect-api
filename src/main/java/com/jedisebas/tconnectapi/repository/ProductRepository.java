@@ -37,30 +37,30 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "WHERE p.code = ?1 AND p.numberT IS NULL AND p.dateTime IS NULL")
     List<Product> findAllByCodeWithNullNumberT(Long code);
 
-    default List<Product> findAllByCodePartAndWn(Long codePart, String wN) {
+    default List<Product> findAllByCodePartAndNw(Long codePart, Integer nW) {
         return findAll(
                 Specification.where(ProductSpecification.withCodePart(codePart))
-                        .and(ProductSpecification.withWN(wN)),
+                        .and(ProductSpecification.withNW(nW)),
                 defaultSort
         );
     }
 
-    default List<Product> findAllByParamsCode(Long code, Integer numberT, LocalDate dateTime, String wN) {
+    default List<Product> findAllByParamsCode(Long code, Integer numberT, LocalDate dateTime, Integer nW) {
         return findAll(
                 Specification.where(ProductSpecification.withCode(code))
                         .and(ProductSpecification.withNumberT(numberT))
                         .and(ProductSpecification.withDate(dateTime))
-                        .and(ProductSpecification.withWN(wN)),
+                        .and(ProductSpecification.withNW(nW)),
                 defaultSort
         );
     }
 
-    default List<Product> findAllByParamsCodePart(Long codePart, Integer numberT, LocalDate dateTime, String wN) {
+    default List<Product> findAllByParamsCodePart(Long codePart, Integer numberT, LocalDate dateTime, Integer nW) {
         return findAll(
                 Specification.where(ProductSpecification.withCodePart(codePart))
                         .and(ProductSpecification.withNumberT(numberT))
                         .and(ProductSpecification.withDate(dateTime))
-                        .and(ProductSpecification.withWN(wN)),
+                        .and(ProductSpecification.withNW(nW)),
                 defaultSort
         );
     }

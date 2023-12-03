@@ -49,23 +49,23 @@ public class ProductService {
         return toReturn;
     }
 
-    public List<ProductDto> fetchAllByCodePartAndWn(Long codePart, String wN) {
+    public List<ProductDto> fetchAllByCodePartAndNw(Long codePart, Integer nW) {
         List<ProductDto> toReturn = new ArrayList<>();
-        repository.findAllByCodePartAndWn(codePart, wN).forEach(product -> toReturn.add(mapper.entityToDto(product)));
+        repository.findAllByCodePartAndNw(codePart, nW).forEach(product -> toReturn.add(mapper.entityToDto(product)));
 
         return toReturn;
     }
 
-    public List<ProductDto> fetchAllByParamsCode(Long code, Integer numberT, LocalDate dateTime, String wN) {
+    public List<ProductDto> fetchAllByParamsCode(Long code, Integer numberT, LocalDate dateTime, Integer nW) {
         List<ProductDto> toReturn = new ArrayList<>();
-        repository.findAllByParamsCode(code, numberT, dateTime, wN).forEach(product -> toReturn.add(mapper.entityToDto(product)));
+        repository.findAllByParamsCode(code, numberT, dateTime, nW).forEach(product -> toReturn.add(mapper.entityToDto(product)));
 
         return toReturn;
     }
 
-    public List<ProductDto> fetchAllByParamsCodePart(Long codePart, Integer numberT, LocalDate dateTime, String wN) {
+    public List<ProductDto> fetchAllByParamsCodePart(Long codePart, Integer numberT, LocalDate dateTime, Integer nW) {
         List<ProductDto> toReturn = new ArrayList<>();
-        repository.findAllByParamsCodePart(codePart, numberT, dateTime, wN).forEach(product -> toReturn.add(mapper.entityToDto(product)));
+        repository.findAllByParamsCodePart(codePart, numberT, dateTime, nW).forEach(product -> toReturn.add(mapper.entityToDto(product)));
 
         return toReturn;
     }
