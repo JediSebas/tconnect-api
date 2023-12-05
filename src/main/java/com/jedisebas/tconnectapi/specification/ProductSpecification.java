@@ -31,7 +31,7 @@ public class ProductSpecification {
     public static Specification<Product> withDate(LocalDate date) {
         return (root, query, builder) ->
                 date == null || date.equals(LocalDate.parse("0000-01-01")) ? builder.isTrue(builder.literal(true)) :
-                        builder.equal(root.get("dateTime"), date);
+                        builder.equal(builder.function("DATE", LocalDate.class, root.get("dateTime")), date);
     }
 
     public static Specification<Product> withNW(Integer nW) {
