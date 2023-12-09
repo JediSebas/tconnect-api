@@ -53,11 +53,6 @@ public class ProductController {
     @GetMapping(value = "/extra", params = {"part", "number", "date", "nw"})
     public List<ProductDto> getAllByParamsCodePart(@RequestParam(required = false) Long part, @RequestParam(required = false) Integer number,
                                                    @RequestParam(required = false) LocalDate date, @RequestParam(required = false) Integer nw) {
-        System.out.println("DUPAAA");
-        System.out.println(part);
-        System.out.println(number);
-        System.out.println(date);
-        System.out.println(nw);
         return service.fetchAllByParamsCodePart(part, number, date, nw);
     }
 
